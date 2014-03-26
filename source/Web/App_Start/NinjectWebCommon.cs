@@ -1,4 +1,4 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Web.App_Start.NinjectWebCommon), "Start")]
+ [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Web.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Web.App_Start.NinjectWebCommon), "Stop")]
 
 namespace Web.App_Start
@@ -11,6 +11,8 @@ namespace Web.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Web.DataAccess;
+    using System.Web.Http;
+    using WebApiContrib.IoC.Ninject;
 
     public static class NinjectWebCommon 
     {
@@ -47,6 +49,9 @@ namespace Web.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
+                GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+
                 return kernel;
             }
             catch
@@ -64,6 +69,8 @@ namespace Web.App_Start
         {
             kernel.Bind<ChurchContext>().To<ChurchContext>().InRequestScope();
             kernel.Bind<IFindTheChurchRepository>().To<FindTheChurchRepository>().InRequestScope();
+
+
         }        
     }
 }

@@ -110,6 +110,9 @@
     <Reference Include="WebActivatorEx">
       <HintPath>..\..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
+    <Reference Include="WebApiContrib.IoC.Ninject">
+      <HintPath>..\..\packages\WebApiContrib.IoC.Ninject.0.9.3.0\lib\net40\WebApiContrib.IoC.Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -186,6 +189,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChurchesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataAccess\Church.cs" />
     <Compile Include="DataAccess\ChurchContext.cs" />
