@@ -24,5 +24,33 @@ namespace Web.DataAccess
         {
             return _churchContext.ServiceTimes.Where(st => st.ChurchId == churchId);
         }
+
+
+        public bool Save()
+        {
+            try
+            {
+                return _churchContext.SaveChanges() > 0;
+            }
+            catch (Exception ex)
+            {
+                //TODO: Log error
+                return false;
+            }
+        }
+
+        public bool AddChurch(Church newChurch)
+        {
+            try
+            {
+                _churchContext.Churches.Add(newChurch);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //TODO: Log error
+                return false;
+            }
+        }
     }
 }

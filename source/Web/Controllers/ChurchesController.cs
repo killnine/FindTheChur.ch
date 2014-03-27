@@ -20,5 +20,22 @@ namespace Web.Controllers
         {
             return _repository.GetChurches().ToList();
         }
+
+        public HttpResponseMessage Post([FromBody]Church newChurch)
+        {
+            if (newChurch.Created == default(DateTime))
+            {
+                newChurch.Created = DateTime.UtcNow;
+            }
+
+            if (_repository.AddChurch(newChurch) && _repository.Save())
+            {
+                return Request.CreateResponse(HttpStatusCode.Created, newChurch);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
     }
 }

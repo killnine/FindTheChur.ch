@@ -6,5 +6,7 @@ namespace Web.DataAccess
     {
         IQueryable<Church> GetChurches();
         IQueryable<ServiceTime> GetServiceTimesForChurch(int churchId);
+        bool Save();
+        bool AddChurch(Church newChurch);
     }
 }
